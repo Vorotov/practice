@@ -16,8 +16,16 @@
   <body>
     <h1>Воротов Дмитрий</h1>
     <img src="https://cdn.glitch.com/4b3708ed-413d-4c74-b144-df90e24915ea%2FCZI_5095.JPG?v=1593501900006" height="400" /> 
-    <canvas id="canvas" height="250" widh="200"></canvas>
-    <canvas id="canvas2" height="250" widh="200"></canvas>
+    <h2>1.2</h2>
+    <canvas id="canvas" height="300" widh="200"></canvas>
+    <h2>1.3</h2>
+    <canvas id="canvas2" height="300" widh="200"></canvas>
+    <p>
+      Функиция bezierCurveTo принимает двве пары направляющих координат и координаты конечной точки. В нее нам удобно отправлять тройки подрядидущих точек и на каждом 
+      этапе брать в качетсве первой направляющей точки конечную точку прошлого. Таким образом первая направляющая точка будет совпалать с начальной точкой, т. е. реально 
+      направлющей станет только вторая, это позволяет сделать контур плавным и при этом не утратится сама форма из-за чрезмерного искривления.
+      Как показала практика, именно при таком сдвиге портрет становится четче. 
+    </p>
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
