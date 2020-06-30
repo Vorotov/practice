@@ -3,13 +3,28 @@ let y=[0.17288, 0.2339, 0.2678, 0.32542, 0.39152, 0.43898, 0.50508, 0.57458, 0.6
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 ctx.beginPath();
-ctx.moveTo(100*x[0]+100,-100*y[0]+100);
+ctx.moveTo(90*x[0]+90,-100*y[0]+100);
 let i = 1
 function draw(){
   if(i>=355)clearInterval(timerId);
-  ctx.lineTo(100*x[i]+100,-100*y[i]+100);
+  ctx.lineTo(90*x[i]+90,-100*y[i]+100);
   ctx.stroke();
   i++;
-  console.log(i);
+ // console.log(i);
 }
 let timerId = setInterval(draw, 100);
+
+var canvas = document.getElementById("canvas2");
+var ctx2 = canvas.getContext("2d");
+ctx2.beginPath();
+ctx2.moveTo(90*x[0]+90,-100*y[0]+100);
+i = 1
+function draw2(){
+  if(i==1)ctx2.moveTo(90*x[0]+90,-100*y[0]+100);
+  if(i>=352)clearInterval(timerId);
+  ctx2.bezierCurveTo(90*x[i]+90, -100*y[i]+100, 90*x[i+1]+90, -100*y[i+1]+100, 90*x[i+2]+90,-100*y[i+2]+100);
+  ctx2.stroke();
+//  console.log(x[i-1]);
+  i=i+2;
+}
+timerId = setInterval(draw2, 100);
