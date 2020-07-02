@@ -18,7 +18,7 @@ class Graphics2d{
                for(let p=0; p<this.W*this.H*4; p+=4)  // for all pixels of canvas 
                 { 
                   let dx = this.W/(this.xmax-this.xmin);
-                  let dy = this.H/(this.ymax-this.ymin);
+                  let dy = this.H/(this.xmax-this.xmin);
                   // computing math x and math y from screen X and screen Y
                     let x =  X/dx;  // scaling to  math x
                     let y = -Y/dy;  // scaling to  math y
@@ -26,8 +26,8 @@ class Graphics2d{
                          y += this.H/(2*dy);      //  translating to math y0=0 
                            
                            // compute axes
-                           const thx=dx/256;  
-                           const thy=dy/256;  
+                           const thx=1/dx;  
+                           const thy=1/dy;  
                            let axis_x =  Math.abs(y) < thx ;
                            let axis_y =  Math.abs(x) < thy ;
                              //combine them
@@ -46,12 +46,12 @@ class Graphics2d{
                          let F= this.f(x,y); // F=-Infinity;
                                           // F = Math.max(F, A);
                   
-                             F *= 1024*1024;  // F - intensity of picture pixels (variant1)
+                             F *= 1024;  // F - intensity of picture pixels (variant1)
                             // F = 1024/F;  // F - intensity of picture pixels (variant2)
                            
                
                                if(F>0) RGBA[p+0]=F;               // red if F>0
-                                       RGBA[p+1]=axes_and_grid;   // green axes_and_grid
+                                       RGBA[p+1]=axes_and_grid*1.5;   // green axes_and_grid
                                if(F<0) RGBA[p+2]=-F;              // blue if F<0
                                        RGBA[p+3]=255;             // opacity
                   
@@ -94,7 +94,7 @@ function InFunc(){
   let s1="";
   if(inF!=""){
     for(let i = 0; i < inF.length;i++){
-      if(inF[i]!='x' && inF[i]!='y' && inF[i]!='+' && inF[i]!='-' && inF[i]!=' ' && inF[i]!='/' && inF[i]!='.' 
+      if(inF[i]!='x' && inF[i]!='y' && inF[i]!='+' && inF[i]!='-' && inF[i]!=' ' && inF[i]!='/'&& inF[i]!=',' && inF[i]!='.' 
            && inF[i]!='*'&& inF[i]!='('&& inF[i]!=')' && !(inF[i]>='0' && inF[i]<='9')){
         s1+="Math."
         while(inF[i]!=')'&& i < inF.length){
